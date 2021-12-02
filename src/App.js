@@ -77,7 +77,7 @@ const App = () => {
       console.log("Error in getGifList: ", error)
       setGifList(null);
     }
-  })
+  }, [])
   const sendGif = async () => {
     if (inputValue.length === 0) {
       console.log("No gif link given!")
