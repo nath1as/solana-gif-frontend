@@ -15,7 +15,7 @@ const { SystemProgram, Keypair } = web3;
 
 const arr = Object.values(kp._keypair.secretKey)
 const secret = new Uint8Array(arr)
-const baseAccount = web3.Keypair.fromSecretKey(secret)
+const baseAccount = Keypair.fromSecretKey(secret)
 
 // Get our program's id from the IDL file.
 const programID = new PublicKey(idl.metadata.address);
@@ -27,7 +27,6 @@ const network = clusterApiUrl('devnet');
 const opts = {
   preflightCommitment: "processed"
 }
-const TEST_GIFS = [];
 // Constants
 const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
@@ -164,7 +163,7 @@ const renderNotConnectedContainer = () => (
       console.log('Fetching GIF list...');
       getGifList()
     }
-  }, [walletAddress]);
+  }, [walletAddress, getGifList]);
 
   const renderConnectedContainer = () => {
     if (gifList === null) {
@@ -200,7 +199,7 @@ const renderNotConnectedContainer = () => (
           <div className="gif-grid">
             {gifList.map((item, index) => (
               <div className="gif-item" key={index}>
-                <img src={item.gifLink} />
+                <img src={item.gifLink} alt="gif" />
               </div>
             ))}
           </div>
