@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 import { Connection, PublicKey, clusterApiUrl} from '@solana/web3.js';
@@ -64,7 +64,7 @@ const App = () => {
       console.log("Error creating BaseAccount account:", error)
     }
   }
-  const getGifList = async() => {
+  const getGifList = useCallback(async() => {
     try {
       const provider = getProvider();
       const program = new Program(idl, programID, provider);
@@ -77,7 +77,7 @@ const App = () => {
       console.log("Error in getGifList: ", error)
       setGifList(null);
     }
-  }
+  })
   const sendGif = async () => {
     if (inputValue.length === 0) {
       console.log("No gif link given!")
