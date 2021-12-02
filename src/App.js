@@ -163,7 +163,7 @@ const renderNotConnectedContainer = () => (
       console.log('Fetching GIF list...');
       getGifList()
     }
-  }, [walletAddress, getGifList]);
+  }, [walletAddress]);
 
   const renderConnectedContainer = () => {
     if (gifList === null) {
